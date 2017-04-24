@@ -1,0 +1,3 @@
+.. environment:: abstract
+
+The Named Data Networking (NDN) architecture builds packet level security into the network layer. NDN security refers to the security related consideration and designs in the NDN. NDN security including security tools and libraries provides application developers with reliable mechanisms to build up the security for new protocol features, algorithms and applications for NDN. To help developers get better understand and improve the NDN security, this document explains all the security designs in NDN and also the future plan to make NDN security stronger.
