@@ -22,7 +22,7 @@ Naming Conventions
 
 - C-KEY
 
-  ``/<data_prefix>/C-KEY/<timeslot>``
+  ``/<data_prefix>/C-KEY/<time-slot>``
 
   An example may be like: ``/alice/health/read/activity/C-KEY/20170101170000``. The name of the C-KEY indicates this C-KEY should be used to encrypt content which is produced in 01/01/2017 5:00 PM to 6:00 PM under prefix ``/alice/health/read/activity``.
 
@@ -30,13 +30,13 @@ Naming Conventions
 
   ``/<data_prefix>/D-KEY/[start-ts]/[end-ts]``
 
-  An example may be like: ``/alice/health/read/activity/D-KEY/20170101160000/20170101180000``. The name of the D-KEY indicates this D-KEY should be used to decrypt C-KEYs whose timeslot is in the range of 01/01/2017 4:00 PM to 7:00 PM under prefix ``/alice/health/read/activity``.
+  An example may be like: ``/alice/health/read/activity/D-KEY/20170101160000/20170101180000``. The name of the D-KEY indicates this D-KEY should be used to decrypt C-KEYs whose time slot is in the range of 01/01/2017 4:00 PM to 7:00 PM under prefix ``/alice/health/read/activity``.
 
 - E-KEY
 
   ``/<data_prefix>/E-KEY/[start-ts]/[end-ts]``
 
-  An example may be like: ``/alice/health/read/activity/E-KEY/20170101160000/20170101180000``.  The name of the E-KEY indicates this E-KEY should be used to encrypt C-KEYs whose timeslot is in the range of 01/01/2017 4:00 PM to 7:00 PM under prefix ``/alice/health/read/activity``.
+  An example may be like: ``/alice/health/read/activity/E-KEY/20170101160000/20170101180000``.  The name of the E-KEY indicates this E-KEY should be used to encrypt C-KEYs whose time slot is in the range of 01/01/2017 4:00 PM to 7:00 PM under prefix ``/alice/health/read/activity``.
 
 **Data packet naming conventions**
 
@@ -92,7 +92,7 @@ Example:
 
   2. Getting E-KEY/D-KEY.
 
-  Assume the data owner want to get the E-KEY/D-KEY for the specific timeslot 16:30 04/13/2017. Then we have:
+  Assume the data owner want to get the E-KEY/D-KEY for the specific time slot 16:30 04/13/2017. Then we have:
 
   .. code-block:: cpp
 
@@ -102,9 +102,9 @@ Example:
 
   3. Adding/Removing schedules
 
-  In NAC, the access unit is based on time; that is, only when one consumer have the access at one specific timeslot, the consumer can get the D-KEY. Therefore on data owner's side, there is a concept of **schedule**. The schedule is like a timetable defining which user can have access at which time.
+  In NAC, the access unit is based on time; that is, only when one consumer have the access at one specific time slot, the consumer can get the D-KEY. Therefore on data owner's side, there is a concept of **schedule**. The schedule is like a timetable defining which user can have access at which time.
 
-  Assume the data owner want such a schedule: From 04/10/2017 Mon to 04/14/2017 Fri, the authorised time period is from 09:00 to 13:00 on Mon, Wed, and Fri, but no access from 11:00 to 13:00 on 04/12/2017 Wed. Then we can create a schedule:
+  Assume the data owner want such a schedule: From 04/10/2017 Mon to 04/14/2017 Fri, the authorized time period is from 09:00 to 13:00 on Mon, Wed, and Fri, but no access from 11:00 to 13:00 on 04/12/2017 Wed. Then we can create a schedule:
 
   .. code-block:: cpp
 
@@ -123,9 +123,9 @@ Example:
     manager.addSchedule("schedule1", schedule);
     manager.deleteSchedule("schedule1");
 
-  4. Adding/Removing authorised consumers
+  4. Adding/Removing authorized consumers
 
-  All the authorised consumer is binded with a schedule. The consumer's access is based on the schedule. Adding/removing consumer is to add/remove consumer's certifciate. Assume we have Alice whose certificate is ``/group/member/alice/KEY/123/NDNCERT/123`` (Here we call it ``certAlice``) and Bob whose certificate is ``/group/member/bob/KEY/123/NDNCERT/123`` (Here we call it ``certBob``).
+  All the authorized consumer is bound with a schedule. The consumer's access is based on the schedule. Adding/removing consumer is to add/remove consumer's certificate. Assume we have Alice whose certificate is ``/group/member/alice/KEY/123/NDNCERT/123`` (Here we call it ``certAlice``) and Bob whose certificate is ``/group/member/bob/KEY/123/NDNCERT/123`` (Here we call it ``certBob``).
 
   .. code-block:: cpp
 
@@ -171,9 +171,9 @@ Example:
 
   .. code-block:: cpp
 
-    uint8_t DATA_CONTEN[] = {0xcb, 0xe5, 0x6a, 0x80, 0x41, 0x24, 0x58, 0x23};
+    uint8_t DATA_CONTENT[] = {0xcb, 0xe5, 0x6a, 0x80, 0x41, 0x24, 0x58, 0x23};
     Data result;
-    producer.produce(result, from_iso_string("20170413T160001"), DATA_CONTEN, sizeof(DATA_CONTEN));
+    producer.produce(result, from_iso_string("20170413T160001"), DATA_CONTENT, sizeof(DATA_CONTENT));
 
 Data Consumer
 ^^^^^^^^^^^^^

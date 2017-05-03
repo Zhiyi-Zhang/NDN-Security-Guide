@@ -225,7 +225,7 @@ Supported Signature Type
 Identity, Key and Certificate
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-All keys, certificates and their corresponding identities are managed by ``KeyChain``. There is an hierarchical structure of keys, certificates and identities; In real world, a user may have multiple identities. Each identity contains one or more keys, one of which is set as the default key of the identity. Similarly, each key contains one or more certificates, one of which is set as the defualt certificate of the key.
+All keys, certificates and their corresponding identities are managed by ``KeyChain``. There is an hierarchical structure of keys, certificates and identities; In real world, a user may have multiple identities. Each identity contains one or more keys, one of which is set as the default key of the identity. Similarly, each key contains one or more certificates, one of which is set as the default certificate of the key.
 
 The private part which includes symmetric keys, and private keys of the asymmetric key pairs, is stored in a ``Trusted Platform Module (TPM) <SecTpm>`` in ndn-cxx security library. The public part which includes public keys of the asymmetric key pairs, identities, and certificates are managed in the ``Public-key Information Base (PIB) <SecPublicInfo>`` in ndn-cxx.  The most important information managed by PIB is **certificates** of public keys.
 
@@ -380,7 +380,7 @@ specification.
 
 * SignatureInfo
 
-  The SignatureInfo block of a certificate is required to include the ``ValidityPeriod`` field. ``ValidityPeriod`` includes two sub TLV fields: ``NotBefore`` and ``NotAfter``, which carry two UTC timestamps in ISO 8601 compact format (``yyyymmddTHHMMSS``, e.g., "20020131T235959"). ``NotBefore`` indicates when the certificate takes effect while ``NotAfter`` indicates when the certificate expires.
+  The SignatureInfo block of a certificate is required to include the ``ValidityPeriod`` field. ``ValidityPeriod`` includes two sub TLV fields: ``NotBefore`` and ``NotAfter``, which carry two UTC time stamps in ISO 8601 compact format (``yyyymmddTHHMMSS``, e.g., "20020131T235959"). ``NotBefore`` indicates when the certificate takes effect while ``NotAfter`` indicates when the certificate expires.
 
   .. note::
 
@@ -470,7 +470,7 @@ instance and supply the data packet and signing by ``KeyChain::sign`` method. On
 
 * Signing with identity
 
-  User can use identity to sign a data packet. When signing, Identity object or identity name could be used as parameter. The default key will be used to generate signature. The defualt certificate of the defualt key will be used to generate KeyLocator.
+  User can use identity to sign a data packet. When signing, Identity object or identity name could be used as parameter. The default key will be used to generate signature. The default certificate of the default key will be used to generate KeyLocator.
 
   .. code-block:: cpp
 
@@ -481,7 +481,7 @@ instance and supply the data packet and signing by ``KeyChain::sign`` method. On
 
 * Signing with key
 
-  User can use a specific key to sign a data packet. When signing, Key object or key name could be used as parameter. The defualt certificate of the defualt key will be used to generate KeyLocator.
+  User can use a specific key to sign a data packet. When signing, Key object or key name could be used as parameter. The default certificate of the default key will be used to generate KeyLocator.
 
   .. code-block:: cpp
 
